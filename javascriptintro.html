@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body style="background-color:azure;">
+  
+<p><b>Add new Row</b></p>
+
+<table id="myTable">
+  <tr>
+    <td>Name</td>
+    <td>Registration Number</td>
+    <td>Mobile No</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>....</td>
+    <td>...</td>
+    
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>....</td>
+    <td>...</td>
+  </tr>
+</table>
+<br>
+
+<button type="button" onclick="myFunction()">Try it</button>
+<p><b> Removing from drop down list</b>b</p>
+<form>
+<select id="colorSelect"> 
+<option>Option 1</option> 
+<option>Option 2</option> 
+<option>Option 3</option> 
+<option>Option 4</option> 
+<option>Option 5</option> 
+<option>Option 6</option> 
+<option>Option 7</option> 
+</select> 
+<input type="button" onclick="removecolor()" value="Select and Remove"> 
+</form>
+<p><b> Showing image while clicking on button</b></p>
+<div>
+<button id="jsstyle" 
+onclick="display_random_image();">Show Image</button> 
+<br>
+</div>
+<p><a href="#" onMouseOver="highlight()" onMouseOut="return_normal()">The highlighted section will look like</a></p> 
+<p><strong>We</strong> have just started <strong>this</strong> section for the users (<strong>beginner</strong> to intermediate) who <strong>want</strong> to work with <strong>various</strong> JavaScript <strong>problems</strong> and write scripts online to <strong>test</strong> their JavaScript <strong>skill</strong>.</p>
+
+<p><b> Count number of item in dropdown list</b></p>
+<form>
+<select id="lst">
+  <option>HTML</option>
+  <option>XML</option>
+  <option>XSLT</option>
+  <option>CSS</option>
+  <option>JavaScript</option>
+  <option>SEO</option>
+  <option>Database</option>
+  <option>Hosting</option>
+</select><br><br>
+<input type="button" 
+onclick="countOptions()" value="Count Options of Dropdown">
+</form>
+<script>
+function myFunction() {
+  var table = document.getElementById("myTable");
+  var row = table.insertRow(0);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  cell1.innerHTML = "NEW CELL1";
+  cell2.innerHTML = "NEW CELL2";
+  cell3.innerHTML="NEW CELL3";
+}
+function removecolor()
+{
+var x=document.getElementById("colorSelect");
+x.remove(x.selectedIndex);
+}
+function display_random_image() 
+{
+     var theImages = [{
+        src: "b.jpg",
+        width: "240",
+        height: "160"
+    }, {
+        src: "http://farm1.staticflickr.com/33/45336904_1aef569b30_n.jpg",
+        width: "320",
+        height: "195"
+    }, {
+        src: "http://farm6.staticflickr.com/5211/5384592886_80a512e2c9.jpg",
+        width: "500",
+        height: "343"
+    }];
+    
+    var preBuffer = [];
+    for (var i = 0, j = theImages.length; i < j; i++) {
+        preBuffer[i] = new Image();
+        preBuffer[i].src = theImages[i].src;
+        preBuffer[i].width = theImages[i].width;
+        preBuffer[i].height = theImages[i].height;
+    }
+   
+// create random image number
+  function getRandomInt(min,max) 
+    {
+      //  return Math.floor(Math.random() * (max - min + 1)) + min;
+    
+imn = Math.floor(Math.random() * (max - min + 1)) + min;
+    return preBuffer[imn];
+    }  
+
+// 0 is first image,   preBuffer.length - 1) is  last image
+  
+var newImage = getRandomInt(0, preBuffer.length - 1);
+ 
+// remove the previous images
+var images = document.getElementsByTagName('img');
+var l = images.length;
+for (var p = 0; p < l; p++) {
+    images[0].parentNode.removeChild(images[0]);
+}
+// display the image  
+document.body.appendChild(newImage);
+}
+//First create a list of all bold items 
+var bold_Items;
+window.onload = getBold_items();
+ 
+// Collect all <strong> tags
+function getBold_items() 
+{
+  bold_Items = document.getElementsByTagName('strong'); 
+}
+// iterate all bold tags and change color  
+function highlight() 
+{
+   for (var i=0; i<bold_Items.length; i++)
+   {                                                    
+    bold_Items[i].style.color = "red";
+    }
+}
+
+// On mouse out highlighted words become black
+function return_normal()
+{
+  for (var i=0; i<bold_Items.length; i++) 
+  {
+       bold_Items[i].style.color = "black";
+  }
+}
+function countOptions(){
+  alert("There are "+
+    document.getElementById("lst").length
+    + " items in list.");
+}
+
+</script>
+
+</body>
+</html>
